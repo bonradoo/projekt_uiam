@@ -1,1 +1,1 @@
-# projekt_uiam
+# Projekt na zajęcia z przedmiotu ```Usługi i aplikacje multimedialne```

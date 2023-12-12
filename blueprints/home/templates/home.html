@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Rolnik-Pro</title>
+</head>
+
+<body class="bg-gray-100">
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center justify-between py-4">
+        <a href="{{ url_for('home.home') }}" class="text-xl font-bold text-gray-800">Rolnik-Pro</a>
+        <a href="{{ url_for('login.login') }}" class="px-4 py-2 rounded bg-blue-500 text-white">Zaloguj się</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <section class="text-center">
+      <h1 class="text-4xl font-bold mb-4">Witaj w Rolnik-Pro</h1>
+      <p class="text-gray-600">Śledź aktywność swoich pracowników.</p>
+      <a href="{{ url_for('home.home') }}" class="mt-4 inline-block px-6 py-3 rounded bg-blue-500 text-white">Rozpocznij</a>
+    </section>
+  </main>
+
+  <footer class="bg-gray-200 py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-gray-600">© 2023 Rolnik-Pro. Wszystkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
