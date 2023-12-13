@@ -2,7 +2,6 @@ from pymongo.mongo_client import MongoClient
 from flask import Blueprint, render_template, redirect, url_for, session, request, jsonify
 import datetime, pprint, json, hashlib
 from pymongo.mongo_client import MongoClient
-import bson
 from bson.json_util import dumps
 
 from blueprints.admin.admin import admin_bp
@@ -63,14 +62,14 @@ def add_admin():
 @api_bp.route('/add_user', methods=['POST'])
 def add_user():
     try:
-        name = request.args.get('name')
-        surname = request.args.get('surname')
-        login = request.args.get('login')
-        password = request.args.get('password')
-        role = request.args.get('role')
+        name = request.form.get('name')
+        surname = request.form.get('surname')
+        login = request.form.get('login')
+        password = request.form.get('password')
+        role = request.form.get('roles')
 
         if request.args.get('email'):
-            email = request.args.get('email')
+            email = request.form.get('email')
         else:
             email = None
     except Exception as e:
@@ -91,12 +90,14 @@ def add_user():
         return redirect(url_for('admin.management', error=e))
     
     try:
+        password_h = hashlib.sha256(password.encode()).hexdigest()
+        
         to_insert = {
             'name': name,
             'surname': surname,
             'login': login,
             'email': email,
-            'password': hashlib.sha256(password.encode()).hexdigest(),
+            'password': password_h,
             'role': role
         }
         user_data.insert_one(to_insert)
@@ -174,13 +175,7 @@ def get_machine_data():
 
 @api_bp.route('/get_workers', methods=['GET'])
 def get_workers():
-    try:
-        user_data = MongoClient(URI).main.user_collection
-        users = list(user_data.find())
-    except Exception as e:
-        return jsonify({'message': e})
-
-    return redirect(url_for('admin.management'), users=users)
+    pass
 
 @api_bp.route('/get_machines', methods=['GET'])
 def get_machines():
