@@ -75,4 +75,16 @@ def reports():
 
 @admin_bp.route('/management', methods=['GET'])
 def management():
-    return render_template('admin_management.html')
+    try:
+        user_data = MongoClient(URI).main.user_collection
+        users = list(user_data.find())
+    except Exception as e:
+        return jsonify({'message': e})
+    
+    try:
+        machines_data = MongoClient(URI).main.machines_collection
+        machines = list(machines_data.find())
+    except Exception as e:
+        return jsonify({'message': e})
+    
+    return render_template('admin_management.html', users=users, machines=machines)

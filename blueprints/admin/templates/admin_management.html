@@ -56,7 +56,7 @@
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Stwórz nowe konto</button>
             </form>
         </div>
-        <div class="bg-red-400 p-3 rounded-lg mt-4">
+        <div class="bg-sky-200 p-3 rounded-lg mt-4">
             <table class="table-auto">
                 <thead>
                     <tr>
@@ -72,7 +72,7 @@
                         <td class="border px-4 py-2">{{ user.name }}</td>
                         <td class="border px-4 py-2">{{ user.surname }}</td>
                         <td class="border px-4 py-2">{{ user.login }}</td>
-                        <td class="border px-4 py-2">{{ user.roles }}</td>
+                        <td class="border px-4 py-2">{{ user.role }}</td>
                     </tr>
                     {% endfor %}
             </table>
@@ -115,7 +115,7 @@
             </form>
         </div>
         
-        <div class="bg-red-400 p-3 rounded-lg mb-4">
+        <div class="bg-sky-200 p-3 rounded-lg mb-4">
             <table class="table-auto">
                 <thead>
                     <tr>

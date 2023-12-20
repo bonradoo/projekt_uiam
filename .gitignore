@@ -1,1 +1,7 @@
 .venv
+__pycache__
+/blueprints/admin/__pycache__
+/blueprints/login/__pycache__
+/blueprints/api/__pycache__
+/blueprints/home/__pycache__
+/blueprints/user/__pycache__
