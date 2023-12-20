@@ -2,6 +2,7 @@ from pymongo.mongo_client import MongoClient
 from flask import Blueprint, render_template, redirect, url_for, session, request, jsonify
 import datetime, pprint, json, hashlib
 from pymongo.mongo_client import MongoClient
+import bson
 from bson.json_util import dumps
 
 from blueprints.admin.admin import admin_bp
@@ -65,10 +66,10 @@ def add_user():
         name = request.form.get('name')
         surname = request.form.get('surname')
         login = request.form.get('login')
-        password = request.form.get('password')
-        role = request.form.get('roles')
+        password = str(request.form.get('password'))
+        role = request.form.get('role')
 
-        if request.args.get('email'):
+        if request.form.get('email'):
             email = request.form.get('email')
         else:
             email = None
@@ -90,14 +91,12 @@ def add_user():
         return redirect(url_for('admin.management', error=e))
     
     try:
-        password_h = hashlib.sha256(password.encode()).hexdigest()
-        
         to_insert = {
             'name': name,
             'surname': surname,
             'login': login,
             'email': email,
-            'password': password_h,
+            'password': hashlib.sha256(password.encode()).hexdigest(),
             'role': role
         }
         user_data.insert_one(to_insert)
@@ -175,7 +174,13 @@ def get_machine_data():
 
 @api_bp.route('/get_workers', methods=['GET'])
 def get_workers():
-    pass
+    try:
+        user_data = MongoClient(URI).main.user_collection
+        users = list(user_data.find())
+    except Exception as e:
+        return jsonify({'message': e})
+
+    return redirect(url_for('admin.management'), users=users)
 
 @api_bp.route('/get_machines', methods=['GET'])
 def get_machines():

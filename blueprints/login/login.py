@@ -47,7 +47,7 @@ def verify_login():
 
         if session['role'] == 'admin':
             return redirect(url_for('admin.admin'))
-        elif session['role'] == 'user':
+        elif session['role'] == 'worker':
             return redirect(url_for('user.user'))
         
         return render_template('login.html', error="Seems like you don't have role assigned. Contact your administrator.")

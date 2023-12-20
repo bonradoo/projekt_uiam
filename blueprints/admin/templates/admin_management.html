@@ -23,40 +23,40 @@
     {% endif %}
     <br>    
     <div class="grid grid-cols-2 gap-4 mx-auto mt-4">
-        <div class="bg-emerald-200 p-3 rounded-lg mt-4">
+        <div class="bg-sky-200 p-3 rounded-lg mt-4">
             <h1 class="text-slate-950 font-bold mb-4">Dodaj nowego pracownika</h1>
             <form class="max-w-sm mx-auto" action="{{ url_for('api.add_user') }}" method="post">
                 <div class="mb-4">
                   <label for="name" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Imię</label>
-                  <input type="text" name="name" id="name" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-green-500 dark:focus:border-green-500 dark:shadow-sm-light" required>
+                  <input type="text" name="name" id="name" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
                 </div>
                 <div class="mb-4">
                     <label for="surname" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Nazwisko</label>
-                    <input type="text" name="surname" id="surname" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-green-500 dark:focus:border-green-500 dark:shadow-sm-light" required>
+                    <input type="text" name="surname" id="surname" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
                 </div>
                 <div class="mb-4">
                     <label for="login" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Login</label>
-                    <input type="text" name="login" id="login" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-green-500 dark:focus:border-green-500 dark:shadow-sm-light" required>
+                    <input type="text" name="login" id="login" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Adres email</label>
-                    <input type="email" name="email" id="email" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-green-500 dark:focus:border-green-500 dark:shadow-sm-light">
+                    <input type="email" name="email" id="email" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
                 </div>
                 <div class="mb-4">
                   <label for="password" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Hasło</label>
-                  <input type="password" name="password" id="password" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-green-500 dark:focus:border-green-500 dark:shadow-sm-light" required>
+                  <input type="password" name="password" id="password" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
                 </div>
                 <div class="flex items-start mb-5">
-                    <label for="roles" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Wybierz rolę użytkownika</label>
-                    <select name="roles" id="roles" class="bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-green-500 dark:focus:border-green-500">
+                    <label for="role" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Wybierz rolę użytkownika</label>
+                    <select name="role" id="role" class="bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="admin">Admin</option>
                         <option value="worker">Pracownik</option>
                       </select>
                 </div>
-                <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Dodaj nowego użytkownika</button>
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Stwórz nowe konto</button>
             </form>
         </div>
-        <div class="bg-emerald-200 p-3 rounded-lg mt-4">
+        <div class="bg-red-400 p-3 rounded-lg mt-4">
             <table class="table-auto">
                 <thead>
                     <tr>
@@ -72,7 +72,7 @@
                         <td class="border px-4 py-2">{{ user.name }}</td>
                         <td class="border px-4 py-2">{{ user.surname }}</td>
                         <td class="border px-4 py-2">{{ user.login }}</td>
-                        <td class="border px-4 py-2">{{ user.role }}</td>
+                        <td class="border px-4 py-2">{{ user.roles }}</td>
                     </tr>
                     {% endfor %}
             </table>
@@ -80,42 +80,42 @@
     </div>
 
     <div class="grid grid-cols-2 gap-4 mx-auto mt-4">
-        <div class="bg-emerald-200 p-3 rounded-lg mb-4">
+        <div class="bg-sky-200 p-3 rounded-lg mb-4">
             <h1 class="text-slate-950 font-bold mb-4">Dodaj nową maszynę</h1>
             <form class="max-w-sm mx-auto" id="machine" action="{{ url_for('api.add_machine')}}" method="post">
                 <div class="mb-4">
                   <label for="company" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Producent</label>
-                  <input type="text" name="company" id="company" class="shadow-sm bg-red-100 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-green-500 dark:focus:border-green-500 dark:shadow-sm-light" required>
+                  <input type="text" name="company" id="company" class="shadow-sm bg-red-100 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
                 </div>
                 <div class="mb-4">
                     <label for="model" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Nazwa</label>
-                    <input type="text" name="model" id="model" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-green-500 dark:focus:border-green-500 dark:shadow-sm-light" required>
+                    <input type="text" name="model" id="model" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
                 </div>
                 <div class="mb-4">
                     <label for="number" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Numer porządkowy</label>
-                    <input type="number" name="number" id="number" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-green-500 dark:focus:border-green-500 dark:shadow-sm-light" required>
+                    <input type="number" name="number" id="number" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
                 </div>
                 <div class="mb-4">
                     <label for="serial_number" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Numer seryjny</label>
-                    <input type="text" name="serial_number" id="serial_number" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-green-500 dark:focus:border-green-500 dark:shadow-sm-light" required>
+                    <input type="text" name="serial_number" id="serial_number" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
                 </div>
                 <div class="mb-4">
                   <label for="workhours" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Stan licznika</label>
-                  <input type="number" step="0.1" name="workhours" id="workhours" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-green-500 dark:focus:border-green-500 dark:shadow-sm-light" required>
+                  <input type="number" step="0.1" name="workhours" id="workhours" class="shadow-sm bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
                 </div>
                 <div class="flex items-start mb-5">
                     <label for="type" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Rodzaj maszyny</label>
-                    <select name="type" id="type" class="bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-green-500 dark:focus:border-green-500">
-                        <option value="pług">Pług</option>
-                        <option value="siewnik">Siewnik</option>
-                        <option value="cysterna">Cysterna</option>
+                    <select name="type" id="type" class="bg-sky-50 border border-sky-50 text-slate-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-sky-50 dark:border-sky-50 dark:placeholder-sky-50 dark:text-slate-950 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="plough">Pług</option>
+                        <option value="seeder">Siewnik</option>
+                        <option value="tank">Cysterna</option>
                       </select>
                 </div>
-                <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Dodaj maszynę</button>
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Dodaj maszynę</button>
             </form>
         </div>
         
-        <div class="bg-emerald-200 p-3 rounded-lg mb-4">
+        <div class="bg-red-400 p-3 rounded-lg mb-4">
             <table class="table-auto">
                 <thead>
                     <tr>
