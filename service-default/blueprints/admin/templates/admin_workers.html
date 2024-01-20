@@ -1,0 +1,73 @@
+{% extends 'admin_base.html' %}
+
+{% block head %}
+<title>Panel administratora</title>
+{% endblock %}
+
+{% block content %}
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <h1 class="text-3xl font-semibold mb-6 text-center text-[#204020]">Pracownicy</h1>
+    <table class="w-full text-sm text-left rtl:text-right text-[#6C6333] dark:text-[#FFFFCC]">
+        <thead class="text-xs text-[#204020] uppercase bg-[#C5C2B0] dark:bg-[#407030] dark:text-[#FFFFCC]">
+            <tr>
+                <th scope="col" class="px-6 py-3">Nazwisko</th>
+                <th scope="col" class="px-6 py-3">Imie</th>
+                <th scope="col" class="px-6 py-3">Login</th>
+                <th scope="col" class="px-6 py-3">Praca</th>
+            </tr>
+        </thead>
+        <tbody class="bg-[#FFFFCC]">
+            {% for worker in workers %}
+            <tr class="border-b dark:bg-[#204020] dark:border-[#407030] hover:bg-[#C5C2B0] dark:hover:bg-[#9CB380]">
+                <td scope="row" class="px-6 py-4 font-medium text-[#6C6333] whitespace-nowrap dark:text-[#FFFFCC]">{{ worker.surname }}</td>
+                <th class="px-6 py-4">{{ worker.name }}</th>
+                <td class="px-6 py-4">{{ worker.login }}</td>
+                <td class="px-6 py-4 text-right">
+                    <button onclick="toggleDetailsRow('{{ worker._id }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+                            <path d="M7.363 9.863a2 2 0 1 0 1.412 3.415A2 2 0 0 0 7.36 9.866l.003-.003ZM5 5V.13a2.98 2.98 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z"/>
+                            <path d="M14.066 0H7v5a2 2 0 0 1-2 2H0v11a1.97 1.97 0 0 0 1.934 2h12.132A1.97 1.97 0 0 0 16 18V2a1.97 1.97 0 0 0-1.934-2Zm-1.722 16.844a1 1 0 0 1-1.414 0L9.383 15.3a3.96 3.96 0 0 1-2.02.566 4 4 0 1 1 4-4 3.96 3.96 0 0 1-.566 2.02l1.547 1.547a1 1 0 0 1 0 1.411Z"/>    
+                        </svg>
+                    </button>
+                </td>
+            </tr>
+            <tr id="details-row-{{ worker._id }}" class="hidden bg-[#407030]">
+                <td colspan="5" class="px-6 py-4">
+                    <!-- Worker Details Here -->
+                    {% for job in worker.jobs %}
+                    <div class="flex flex-col md:flex-row">
+                        <div class="flex-1">
+                            <div class="font-medium text-[#C5C2B0]">{{ job.work_name }}</div>
+                            <div class="text-[#FFFFCC]">{{ job.work_desc }}</div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-medium text-[#C5C2B0]">Dostępna</div>
+                            <div class="text-[#FFFFCC]">{{ job.active }}</div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-medium text-[#C5C2B0]">Ukończono</div>
+                            <div class="text-[#FFFFCC]">{{ job.done }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    // Function to toggle the details row
+    function toggleDetailsRow(workerId) {
+        var detailsRow = document.getElementById('details-row-' + workerId);
+        if (detailsRow.classList.contains('hidden')) {
+            detailsRow.classList.remove('hidden');
+        } else {
+            detailsRow.classList.add('hidden');
+        }
+    }
+</script>
+{% endblock %}
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles using the provided color palette */
+        body { background-color: #204020; } /* Dark Green */
+        h1, label { color: #FFFFCC; } /* Cream */
+        p { color: #C5C2B0; } /* Beige */
+        .bg-form { background-color: #9CB380; } /* Light Olive Green */
+        .text-form { color: #204020; } /* Dark Green */
+        .btn-submit { background-color: #6C6333; color: #FFFFFF; } /* Metallic Bronze with White text */
+        .hover\:btn-hover:hover { background-color: #407030; } /* Mid Green on hover */
+    </style>
+    {% block head %}
+    {% endblock %}
+</head>
+<body class="min-h-screen flex items-center justify-center text-cream">
+    {% block content %}
+    {% endblock %}
+    <script>
+    function goBack() {
+        window.history.back();
+    }
+    </script>
+</body>
+
+</html>

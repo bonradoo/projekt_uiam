@@ -1,0 +1,96 @@
+{% extends 'admin_base.html' %}
+
+{% block head %}
+<title>Panel administratora</title>
+{% endblock %}
+
+{% block content %}
+ <div class="grid grid-cols-1 gap-4 mb-2">
+    <h1 class="flex text-2xl justify-center mb-2 text-[#204020]">Lokalizacja</h1>
+    <div class="flex items-center justify-center h-48 rounded bg-[#9CB380] dark:bg-[#407030]">
+        <table class="w-full text-sm text-left rtl:text-right text-[#6C6333] dark:text-[#FFFFCC]">
+            <thead class="text-xs text-[#204020] uppercase bg-[#C5C2B0] dark:bg-[#407030] dark:text-[#FFFFCC]">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Model</th>
+                    <th scope="col" class="px-6 py-3">Numer Seryjny</th>
+                    <th scope="col" class="px-6 py-3">Lokalizacja</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for machine in machines %}
+                <tr class="bg-[#FFFFCC] border-b dark:bg-[#204020] dark:border-[#407030] hover:bg-[#C5C2B0] dark:hover:bg-[#9CB380]">
+                    <td scope="row" class="px-6 py-4 font-medium text-[#6C6333] whitespace-nowrap dark:text-[#FFFFCC]">{{ machine.model }}</td>
+                    <td class="px-6 py-4">{{ machine.serial_number }}</td>
+                    <td class="px-6 py-4">{{ machine.location }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+ </div>
+ <div class="grid grid-cols-1">
+    <h1 class="flex text-2xl justify-center mb-2 text-[#204020]">Ogólnie informacje</h1>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-[#6C6333] dark:text-[#FFFFCC]">
+            <thead class="text-xs text-[#204020] uppercase bg-[#C5C2B0] dark:bg-[#407030] dark:text-[#FFFFCC]">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-center">Model</th>
+                    <th scope="col" class="px-6 py-3 text-center">Producent</th>
+                    <th scope="col" class="px-6 py-3 text-center">Lp</th>
+                    <th scope="col" class="px-6 py-3 text-center">Numer Seryjny</th>
+                    <th scope="col" class="px-6 py-3 text-center">Szczegóły</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for machine in machines %}
+                <tr class="bg-[#FFFFCC] border-b dark:bg-[#204020] dark:border-[#407030] hover:bg-[#C5C2B0] dark:hover:bg-[#9CB380]">
+                    <td scope="row" class="px-6 py-4 font-medium text-[#6C6333] whitespace-nowrap dark:text-[#FFFFCC]">{{ machine.model }}</td>
+                    <td class="px-6 py-4 text-center">{{ machine.company }}</td>
+                    <td class="px-6 py-4 text-center">{{ machine.number }}</td>
+                    <td class="px-6 py-4 text-center">{{ machine.serial_number }}</td>
+                    <td class="px-6 py-4 text-center">
+                        <button onclick="toggleDetailsRow('{{ machine._id }}')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                              </svg>
+                        </button>
+                    </td>
+                </tr>
+                <tr id="details-row-{{ machine._id }}" class="hidden bg-[#204020]">
+                    <td colspan="5" class="px-6 py-4">
+                        <!-- Machine Details Here -->
+                        <div class="flex flex-col md:flex-row">
+                            <div class="flex-1">
+                                <div class="font-medium text-[#C5C2B0]">Maszynogodziny</div>
+                                <div class="text-[#FFFFCC]">{{ machine.workhours }}</div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-medium text-[#C5C2B0]">Typ</div>
+                                <div class="text-[#FFFFCC]">{{ machine.type }}</div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-medium text-[#C5C2B0]">RFID</div>
+                                <div class="text-[#FFFFCC]">{{ machine.rfid }}</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+ </div>
+
+ <script>
+    // Function to toggle the details row
+    function toggleDetailsRow(machineId) {
+        var detailsRow = document.getElementById('details-row-' + machineId);
+        if (detailsRow.classList.contains('hidden')) {
+            detailsRow.classList.remove('hidden');
+        } else {
+            detailsRow.classList.add('hidden');
+        }
+    }
+ </script>
+{% endblock %}

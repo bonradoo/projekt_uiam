@@ -1,7 +1,0 @@
-flask
-google-cloud-datastore
-jsonify
-pytz
-flask_wtf
-Flask-Paginate
-pymongo[srv]

@@ -1,0 +1,28 @@
+{% extends "admin.html" %}
+
+{% block content %}
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-700">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+            <tr>
+                <th scope="col" class="px-6 py-3">Date & Time</th>
+                <th scope="col" class="px-6 py-3">Temperature (°C)</th>
+                <th scope="col" class="px-6 py-3">Weather</th>
+                <th scope="col" class="px-6 py-3">Wind Speed (m/s)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in weather_json.list %}
+            <tr class="bg-white border-b">
+                <td class="px-6 py-4">{{ item.dt_txt }}</td>
+                <td class="px-6 py-4">{{ (item.main.temp - 273.15) | round(2) }}°C</td>
+                <td class="px-6 py-4">{{ item.weather[0].description }}</td>
+                <td class="px-6 py-4">{{ item.wind.speed }} m/s</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+{% endblock %}

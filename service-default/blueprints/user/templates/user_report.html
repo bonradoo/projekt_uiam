@@ -1,0 +1,61 @@
+
+{% extends 'user_base.html' %}
+
+{% block head %}
+<title>Panel użytkownika - Raport maszynowy</title>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-md w-full bg-form p-8 rounded-lg shadow-lg">
+    <h1 class="text-2xl font-semibold mb-4">Raport maszynowy</h1>
+    {% if message %}
+    <div class="mb-4">
+        <p>{{ message }}</p>
+    </div>
+    {% endif %}
+    
+    {% if error %}
+    <div class="mb-4">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    <form action="/user/add_report" method="post">
+        <!-- Machine Selection -->
+        <div class="mb-4">
+            <label for="machine" class="block text-gray-600">Maszyna:</label>
+            <select name="machine" id="machine" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-900">
+                <!-- Add options for each machine -->
+                    <option value="plough">Pług</option>
+                    <option value="seeder">Siewnik</option>
+                    <option value="tank">Cysterna</option>
+            </select>
+        </div>
+
+        <!-- Fuel State -->
+        <div class="mb-4">
+            <label for="fuel_state" class="block text-gray-600">Stan paliwa:</label>
+            <input type="text" id="fuel_state" name="fuel_state" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-900">
+        </div>
+
+        <!-- Machine Hours -->
+        <div class="mb-4">
+            <label for="machine_hours" class="block text-gray-600">Maszynogodziny:</label>
+            <input type="number" id="machine_hours" name="machine_hours" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-900">
+        </div>
+
+        <!-- Operational Check -->
+        <div class="mb-4 flex items-center">
+            <input type="checkbox" id="oc_done" name="oc_done" required class="mr-2">
+            <label for="oc_done" class="text-gray-600">OC wykonane</label>
+        </div>
+
+        <!-- Submission Button -->
+        <div class="mb-4">
+            <button type="submit" class="w-full btn-submit border py-2 rounded-lg hover:btn-hover">Zapisz raport</button>
+        </div>
+    </form>
+
+    <button onclick="goBack()" class="w-32 border rounded btn-submit py-2 rounded-lg hover:btn-hover">Powrót</button>
+</div>
+{% endblock %}

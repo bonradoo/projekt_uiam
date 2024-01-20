@@ -1,0 +1,16 @@
+Dark Green (#204020): This is a primary color in the image, present in the background and some of the text. It conveys growth and natural elements, which is fitting for a farm-related app.
+
+Mid Green (#407030): This shade is used for highlights and icons, providing a good contrast against the darker green.
+
+Light Olive Green (#9CB380): Used in the icons and buttons, this lighter green offers a softer touch that complements the darker greens.
+
+Metallic Bronze (#6C6333): Some of the text and design elements have this earthy bronze tone, reminiscent of soil and farming equipment.
+
+Beige (#C5C2B0): There are background sections and icons in a neutral beige, which balances the greens and provides a clean background for text.
+
+Cream (#FFFFCC): A very light cream color is used in the text, which stands out well against the darker backgrounds.
+
+Black (#000000): For text and some outlines, providing a classic and readable contrast.
+
+White (#FFFFFF): Used sparingly for text and icons, it creates a clean, modern look.
+

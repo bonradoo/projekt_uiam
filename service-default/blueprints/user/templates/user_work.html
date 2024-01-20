@@ -1,0 +1,37 @@
+{% extends 'user_base.html' %}
+
+{% block head %}
+<title>Panel użytkownika - Wybierz pracę</title>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-md w-full bg-form p-8 rounded-lg shadow-lg">
+    <h1 class="text-2xl font-semibold mb-4 text-form">Wybierz pracę</h1>
+    
+    {% if message %}
+    <div class="mb-4">
+        <p class="text-form">{{ message }}</p>
+    </div>
+    {% endif %}
+    
+    {% if error %}
+    <div class="mb-4">
+        <p class="text-red-500">{{ error }}</p>
+    </div>
+    {% endif %}
+
+    <form action="{{ url_for('user.add_work') }}" method="post">
+        <div class="mb-4">
+            <label for="work" class="block text-form text-sm font-bold mb-2">Wybierz pracę:</label>
+            <select name="work" id="work" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                {% for job in work_to_do %}
+                <option value="{{ job._id }}">{{ job.work_name }}: {{ job.work_desc }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="mt-4 mb-4 w-full btn-submit py-2 px-4 rounded hover:btn-hover border rounded-lg">Wybierz pracę</button>
+    </form>
+
+    <button onclick="goBack()" class="w-32 border rounded btn-submit py-2 rounded-lg hover:btn-hover">Powrót</button>
+</div>
+{% endblock %}

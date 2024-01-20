@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles using provided color palette */
+        .bg-primary { background-color: #204020; } /* Dark Green */
+        .text-highlight { color: #407030; } /* Mid Green */
+        .btn-light { background-color: #9CB380; color: #204020; } /* Light Olive Green */
+        .text-metallic { color: #6C6333; } /* Metallic Bronze */
+        .bg-beige { background-color: #C5C2B0; } /* Beige */
+        .text-cream { color: #FFFFCC; } /* Cream */
+        .text-black { color: #000000; } /* Black */
+        .text-white { color: #FFFFFF; } /* White */
+    </style>
+    {% block head %}
+    {% endblock %}
+</head>
+<body class="bg-primary min-h-screen flex items-center justify-center text-cream">
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

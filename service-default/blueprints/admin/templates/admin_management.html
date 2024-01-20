@@ -1,0 +1,169 @@
+{% extends 'admin_base.html' %}
+
+{% block head %}
+<title>Panel użytkownika</title>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="content w-auto">
+    <h1>Administrowanie</h1>
+    {% if error %}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Błąd!</strong>
+        <span class="block sm:inline">{{ error }}</span>
+    </div>
+    {% endif %}
+    {% if success %}
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Sukces!</strong>
+        <span class="block sm:inline">{{ success }}</span>
+    </div>
+    {% endif %}
+    <br>    
+    <div class="grid grid-cols-12 gap-4 mx-auto mt-4">
+        <div class="bg-[#C5C2B0] p-3 rounded-lg max-w-sm col-span-4">
+            <h1 class="text-[#204020] font-bold mb-4">Dodaj nowego pracownika</h1>
+            <form class="max-w-sm mx-auto" action="{{ url_for('api.add_user') }}" method="post">
+                    <div class="mb-4">
+                      <label for="name" class="block mb-2 text-sm font-medium text-[#6C6333]">Imię</label>
+                      <input type="text" name="name" id="name" class="shadow-sm bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="surname" class="block mb-2 text-sm font-medium text-[#6C6333]">Nazwisko</label>
+                        <input type="text" name="surname" id="surname" class="shadow-sm bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="login" class="block mb-2 text-sm font-medium text-[#6C6333]">Login</label>
+                        <input type="text" name="login" id="login" class="shadow-sm bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block mb-2 text-sm font-medium text-[#6C6333]">Adres email</label>
+                        <input type="email" name="email" id="email" class="shadow-sm bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5">
+                    </div>
+                    <div class="mb-4">
+                      <label for="password" class="block mb-2 text-sm font-medium text-[#6C6333]">Hasło</label>
+                      <input type="password" name="password" id="password" class="shadow-sm bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5" required>
+                    </div>
+                    <div class="flex items-start mb-5">
+                        <label for="role" class="block mb-2 text-sm font-medium text-slate-950 dark:text-slate-950">Wybierz rolę użytkownika</label>
+                        <select name="role" id="role" class="bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5">
+                            <option value="admin">Admin</option>
+                            <option value="worker">Pracownik</option>
+                          </select>
+                    </div>
+                    <button type="submit" class="text-white bg-[#204020] hover:bg-[#407030] focus:ring-4 focus:outline-none focus:ring-[#9CB380] font-medium rounded-lg text-sm px-5 py-2.5 text-center">Stwórz nowe konto</button>
+                </form>
+        </div>
+        <div class="bg-[#C5C2B0] p-3 rounded-lg overflow-x-auto w-auto col-span-8">
+            <table class="min-w-full w-auto">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 text-[#204020]">Imię</th>
+                        <th class="px-4 py-2 text-[#204020]">Nazwisko</th>
+                        <th class="px-4 py-2 text-[#204020]">Login</th>
+                        <th class="px-4 py-2 text-[#204020]">Rola</th>
+                        <th class="px-4 py-2 text-[#204020]">Akcje</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-[#FFFFCC]">
+                    {% for user in users %}
+                    <tr>
+                        <td class="border px-4 py-2 text-[#6C6333]">{{ user.name }}</td>
+                        <td class="border px-4 py-2 text-[#6C6333]">{{ user.surname }}</td>
+                        <td class="border px-4 py-2 text-[#6C6333]">{{ user.login }}</td>
+                        <td class="border px-4 py-2 text-[#6C6333]">{{ user.role }}</td>
+                        <td class="border px-4 py-2">
+                            {% if user.role == 'worker' %}
+                                <form action="{{ url_for('admin.delete_user', login=user.login) }}" method="post">
+                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Usuń</button>
+                                </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>                
+            </table>
+        </div>
+    </div>
+    
+
+    <div class="grid grid-cols-12 gap-4 mx-auto mt-4">
+        <div class="bg-[#C5C2B0] p-3 rounded-lg max-w-sm col-span-4">
+            <h1 class="text-[#204020] font-bold mb-4">Dodaj nową maszynę</h1>
+            <form class="max-w-sm mx-auto" id="machine" action="{{ url_for('api.add_machine')}}" method="post">
+                <div class="mb-4">
+                    <label for="company" class="block mb-2 text-sm font-medium text-[#6C6333]">Producent</label>
+                    <input type="text" name="company" id="company" class="shadow-sm bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5" required>
+                </div>
+                <div class="mb-4">
+                    <label for="model" class="block mb-2 text-sm font-medium text-[#6C6333]">Nazwa</label>
+                    <input type="text" name="model" id="model" class="shadow-sm bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5" required>
+                </div>
+                <div class="mb-4">
+                    <label for="number" class="block mb-2 text-sm font-medium text-[#6C6333]">Numer porządkowy</label>
+                    <input type="number" name="number" id="number" class="shadow-sm bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5" required>
+                </div>
+                <div class="mb-4">
+                    <label for="serial_number" class="block mb-2 text-sm font-medium text-[#6C6333]">Numer seryjny</label>
+                    <input type="text" name="serial_number" id="serial_number" class="shadow-sm bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5" required>
+                </div>
+                <div class="mb-4">
+                    <label for="workhours" class="block mb-2 text-sm font-medium text-[#6C6333]">Stan licznika [Maszynogodziny]</label>
+                    <input type="number" step="0.1" name="workhours" id="workhours" class="shadow-sm bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5" required>
+                </div>
+                <div class="mb-4">
+                    <label for="rfid" class="block mb-2 text-sm font-medium text-[#6C6333]">Numer RFID</label>
+                    <input type="text" name="rfid" id="rfid" class="shadow-sm bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5" required>
+                </div>
+                <div class="flex items-start mb-5">
+                    <label for="type" class="block mb-2 text-sm font-medium text-[#6C6333]">Rodzaj maszyny</label>
+                    <select name="type" id="type" class="bg-[#FFFFCC] border border-[#9CB380] text-[#6C6333] text-sm rounded-lg focus:ring-[#204020] focus:border-[#407030] block w-full p-2.5">
+                        <option value="plough">Pług</option>
+                        <option value="seeder">Siewnik</option>
+                        <option value="tank">Cysterna</option>
+                    </select>
+                </div>
+                <button type="submit" class="text-white bg-[#204020] hover:bg-[#407030] focus:ring-4 focus:outline-none focus:ring-[#9CB380] font-medium rounded-lg text-sm px-5 py-2.5 text-center">Dodaj maszynę</button>
+            </form>
+        </div>
+            <!-- Continuation of the previous HTML structure -->
+        <div class="bg-[#C5C2B0] p-3 rounded-lg overflow-x-auto w-auto col-span-8">
+            <table class="min-w-full w-auto">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 text-[#204020]">Producent</th>
+                        <th class="px-4 py-2 text-[#204020]">Nazwa</th>
+                        <th class="px-4 py-2 text-[#204020]">Numer</th>
+                        <th class="px-4 py-2 text-[#204020]">Rodzaj</th>
+                        <th class="px-4 py-2 text-[#204020]">Akcje</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-[#FFFFCC]">
+                    {% for machine in machines %}
+                    <tr>
+                        <td class="border px-4 py-2 text-[#6C6333]">{{ machine.company }}</td>
+                        <td class="border px-4 py-2 text-[#6C6333]">{{ machine.model }}</td>
+                        <td class="border px-4 py-2 text-[#6C6333]">{{ machine.number }}</td>
+                        <td class="border px-4 py-2 text-[#6C6333]">{{ machine.type }}</td>
+                        <td class="border px-4 py-2">
+                            <form action="{{ url_for('admin.delete_machine', id=machine._id) }}" method="post">
+                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Usuń</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+  

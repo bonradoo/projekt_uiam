@@ -1,0 +1,9 @@
+runtime: python39
+service: api
+
+handlers:
+- url: /static
+  static_dir: static
+- url: /api/.*
+  secure: always
+  script: auto
