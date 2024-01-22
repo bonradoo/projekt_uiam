@@ -56,58 +56,5 @@ def verify_login():
         error = 'There was an error logging you in. Please try again.'
         return render_template('login.html', error=error)
 
-
-    
-# @login_bp.route('/signup')
-# def signup():
-#     return render_template('signup.html')
-
-# @login_bp.route('/create_user', methods=['POST'])
-# def create_user():
-#     try:
-#         name = request.form.get('name')
-#         username = request.form.get('username')
-#         email = request.form.get('email')
-#         password = request.form.get('password')
-#         birth_date = request.form.get('birth_date')
-#     except Exception as e:
-#         print(e)
-#         return redirect(url_for('login.login'), error=e)
-    
-#     try:
-#         user_data = MongoClient(URI).main.user_collection
-#     except Exception as e:
-#         print(e)
-#         return redirect(url_for('login.login'), error=e)
-    
-#     if user_data.find_one({"username":username}) != None:
-#         return redirect(url_for('login.login'), error="User already exists")
-
-#     if user_data.find_one({"email":email}) != None:
-#         return redirect(url_for('login.login'), error="Email already exists")
-
-#     to_insert = {
-#         "name":name,
-#         "username":username,
-#         "email":email,
-#         "hashed_password":hashlib.sha256(password.encode()).hexdigest(),
-#         "watchlist":[],
-#         "reviews":[],
-#         "streaming_services":[],
-#         "preferences":[],
-#         "birth_date":birth_date,
-#         "child_to":[],
-#         "parent_of":[]
-#     }
-
-#     try:
-#         user_data.insert_one(to_insert)
-#     except Exception as e:
-#         print(e)
-#         return redirect(url_for('login.login'), error=e)
-
-#     return redirect(url_for('login.login'), message="Account created successfully. Please log in.")
-    
-
 if __name__ == '__main__':
     pass
